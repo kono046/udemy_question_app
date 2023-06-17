@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
     # 質問一覧表示
     def index
         @questions = Question.all
-        p @questions
+        # p @questions
     end
 
     # 質問詳細ページ表示
