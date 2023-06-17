@@ -15,4 +15,33 @@
     <%= @question.content %>
 </p>
 
+
+
+<h2>Answers All</h2>
+<% @question.answers.each do |answer| %>
+    <p>
+        <%= answer.content %><br>
+        (name: <%= answer.name %>)
+    </p>
+
+    <p>
+        <%= link_to 'Del Ans', [answer.question, answer],
+            data: { turbo_method: 'delete', turbo_confirm: 'Are you sure?'} %>
+    </p>
+<% end %>
+
+
+<h2>Add a Answer</h2>
+<%= form_with model: [@question, @question.answers.build] do |form| %>
+    <div>
+        <%= form.label :name %><br>
+        <%= form.text_field :name %>
+    </div>
+        <div>
+        <%= form.label :content %><br>
+        <%= form.text_area :content %>
+    </div>
+    <%= form.submit %>
+<% end %>
+
 <%= link_to 'topへ', questions_path %>
